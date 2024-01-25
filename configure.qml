@@ -65,10 +65,11 @@ MuseScore {
 			ColumnLayout {
 				id: mainColumn
 				spacing: 0
+				width: mainWindow.width
 				
 				ColumnLayout {
-					spacing: regSpace
-					Layout.margins: regSpace
+					spacing: 0
+					width: parent.width
 					
 					MenuButton {
 						id: generalButton
@@ -76,12 +77,14 @@ MuseScore {
 						isExpanded: true
 					}
 					ColumnLayout {
-						spacing: maxSpace
+						spacing: 0
+						width: parent.width - Layout.leftMargin
 						Layout.leftMargin: regSpace
 						visible: generalButton.isExpanded
 						
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting0Button
@@ -108,7 +111,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting6Button
@@ -156,7 +160,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting9aButton
@@ -180,7 +185,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting9bButton
@@ -201,26 +207,33 @@ MuseScore {
 										onClicked: updatesetting9bImg()
 									}
 								}
+								anchors.bottomMargin: regSpace
+							}
+							Item {
+								height: regSpace
+								visible: setting9bButton.isExpanded
 							}
 						}
 					}
 				}
 				MU.SeparatorLine {width: mainWindow.width}
 				ColumnLayout {
-					spacing: regSpace
-					Layout.margins: regSpace
+					spacing: 0
+					width: parent.width
 					
 					MenuButton {
 						id: sameStaffButton
 						title: qsTr("Notes in the same staff")
 					}
 					ColumnLayout {
-						spacing: maxSpace
+						spacing: 0
 						Layout.leftMargin: regSpace
+						width: parent.width - Layout.leftMargin
 						visible: sameStaffButton.isExpanded
 						
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting4aButton
@@ -263,7 +276,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting1Button
@@ -312,7 +326,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting4bButton
@@ -352,26 +367,33 @@ MuseScore {
 										}
 									}
 								}
+								anchors.bottomMargin: regSpace
+							}
+							Item {
+								height: regSpace
+								visible: setting4bButton.isExpanded
 							}
 						}
 					}
 				}
 				MU.SeparatorLine {width: mainWindow.width}
 				ColumnLayout {
-					spacing: regSpace
-					Layout.margins: regSpace
+					spacing: 0
+					width: parent.width
 					
 					MenuButton {
 						id: differentStaffButton
 						title: qsTr("Notes in different staves of the same instrument")
 					}
 					ColumnLayout {
-						spacing: maxSpace
+						spacing: 0
 						Layout.leftMargin: regSpace
+						width: parent.width - Layout.leftMargin
 						visible: differentStaffButton.isExpanded
 						
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting2Button
@@ -420,7 +442,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting5aButton
@@ -463,7 +486,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting3Button
@@ -512,7 +536,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting5bButton
@@ -552,26 +577,33 @@ MuseScore {
 										}
 									}
 								}
+								anchors.bottomMargin: regSpace
+							}
+							Item {
+								height: regSpace
+								visible: setting5bButton.isExpanded
 							}
 						}
 					}
 				}
 				MU.SeparatorLine {width: mainWindow.width}
 				ColumnLayout {
-					spacing: regSpace
-					Layout.margins: regSpace
+					spacing: 0
+					width: parent.width
 					
 					MenuButton {
 						id: keySigButton
 						title: qsTr("Notes after key signature changes")
 					}
 					ColumnLayout {
-						spacing: maxSpace
+						spacing: 0
 						Layout.leftMargin: regSpace
+						width: parent.width - Layout.leftMargin
 						visible: keySigButton.isExpanded
 						
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting7Button
@@ -629,7 +661,8 @@ MuseScore {
 							}
 						}
 						ColumnLayout {
-							spacing: regSpace
+							spacing: 0
+							width: parent.width
 							
 							MenuButton {
 								id: setting8Button
@@ -684,6 +717,11 @@ MuseScore {
 										}
 									}
 								}
+								anchors.bottomMargin: regSpace //doesnt work
+							}
+							Item {
+								height: regSpace
+								visible: setting8Button.isExpanded
 							}
 						}
 					}
@@ -702,7 +740,6 @@ MuseScore {
 				GradientStop {position: 1.0; color: "transparent"}
 			}
 		}
-
 		Rectangle {
 			height: maxSpace
 			anchors.left: flickable.left
@@ -726,7 +763,7 @@ MuseScore {
 				anchors.bottom: parent.bottom
 				anchors.margins: regSpace
 				text: qsTr("Reset Settings")
-				onClicked: {loadSettings(DSettings.read())}
+				onClicked: loadSettings(DSettings.read())
 			}
 			Row {
 				id: okButton
@@ -737,9 +774,7 @@ MuseScore {
 				
 				MU.FlatButton {
 					text: qsTr("Cancel")
-					onClicked: {
-						smartQuit()
-					}
+					onClicked: smartQuit()
 				}
 				MU.FlatButton {
 					text: qsTr("OK")
@@ -752,11 +787,8 @@ MuseScore {
 			}
 		}
 		Component.onCompleted: {
-			if (JSON.parse(options.uSettings).edited) {
-				loadSettings(JSON.parse(options.uSettings))
-			} else {
-				loadSettings(DSettings.read())
-			}
+			if (JSON.parse(options.uSettings).edited) loadSettings(JSON.parse(options.uSettings))
+			else loadSettings(DSettings.read())
 			width = Math.max(width, flickable.contentWidth)
 		}
 	}
@@ -999,7 +1031,6 @@ MuseScore {
 	}
 	function smartQuit() {
 		mainWindow.close()
-		if (mscoreMajorVersion < 4) {Qt.quit()}
-		else {quit()}
-	}//smartQuit
+		quit()
+	}
 }
