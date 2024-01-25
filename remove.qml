@@ -19,63 +19,15 @@
 
 import QtQuick 2.0
 import MuseScore 3.0
+import "assets/utils.js" as Utils
 
 MuseScore {
-	version: "4.0-beta"
-	menuPath: "Plugins." + qsTr("Accidentals") + "." + qsTr("Remove Cautionary Accidentals")
-	description: qsTr("This plugin removes cautionary accidentals from the score")
-	requiresScore: true
-	
-	Component.onCompleted: {
-		if (mscoreMajorVersion >= 4) {
-			title = qsTr("Remove Cautionary Accidentals")
-			categoryCode = "composing-arranging-tools"
-			thumbnailName = "assets/logo.png"
-		}
-	}
-	function tpcToName(tpc) {
-		var tpcNames = [ //-1 thru 33
-			"Fbb", "Cbb", "Gbb", "Dbb", "Abb", "Ebb", "Bbb",
-			"Fb",  "Cb",  "Gb",  "Db",  "Ab",  "Eb",  "Bb",
-			"F",   "C",   "G",   "D",   "A",   "E",   "B",
-			"F#",  "C#",  "G#",  "D#",  "A#",  "E#",  "B#",
-			"F##", "C##", "G##", "D##", "A##", "E##", "B##"
-		]
-		return tpcNames[tpc+1]
-	}
-	onRun: {
-		curScore.startCmd()
-		if (!curScore.selection.elements.length) {
-			console.log("No selection. Applying plugin to all notes...")
-			cmd("select-all")
-		} else {
-			console.log("Applying plugin to selection")
-		}
-		var notes = []
-		for (var i in curScore.selection.elements) {
-			if (curScore.selection.elements[i].type == Element.NOTE) {
-				destateAccidental(curScore.selection.elements[i])
-			}
-		}
-		curScore.endCmd()
-	}
-	function destateAccidental(note) {
-		if (note.accidental) {
-			var oldAccidental = note.accidentalType
-			if (note.accidentalType == Accidental.NATURAL_FLAT) {
-				oldAccidental = Accidental.FLAT
-			}
-			if (note.accidentalType == Accidental.NATURAL_SHARP) {
-				oldAccidental = Accidental.SHARP
-			}
-		}
-		var oldPitch = note.pitch
-		note.accidentalType = Accidental.NONE
-		if (note.pitch != oldPitch) {
-			note.accidentalType = oldAccidental
-			console.log("Keeping existing accidental for note " + tpcToName(note.tpc))
-		} else {
-			console.log("Removing accidental from note " + tpcToName(note.tpc))
-		}
-	}
+    title: qsTr("Remove Cautionary Accidentals")
+    version: "4.0"
+    description: qsTr("This plugin removes cautionary accidentals from the score")
+    categoryCode: "composing-arranging-tools"
+    thumbnailName: "assets/logo.png"
+    requiresScore: true
+
+    onRun: Utils.runPlugin("remove")
 }
