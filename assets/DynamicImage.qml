@@ -22,21 +22,21 @@ import QtQuick.Layouts 1.2
 import MuseScore.Ui 1.0
 
 Rectangle {
-	property int realWidth: 400
-	property int cornerRadius: 10
-	property var source: "logo.png"
-	radius: cornerRadius
-	border.color: ui.theme.accentColor
-	border.width: 2
-	Layout.preferredWidth: realWidth
-	Layout.preferredHeight: image.height + cornerRadius
-	//anchors.horizontalCenter: parent.horizontalCenter
-	Image {
-		id: image
-		source: parent.source
-		width: parent.width - cornerRadius
-		anchors.centerIn: parent
-		fillMode: Image.PreserveAspectFit // ensure it fits
-		mipmap: true // smoothing
-	}
+    property int realWidth: 400
+    property int cornerRadius: regSpace
+    property var source: "logo.png" // something
+    radius: cornerRadius
+    border.color: ui.theme.accentColor
+    border.width: 2
+    Layout.preferredWidth: realWidth
+    Layout.preferredHeight: image.height + cornerRadius
+    //anchors.horizontalCenter: parent.horizontalCenter
+    Image {
+        id: image
+        source: parent.source
+        width: parent.width - cornerRadius
+        anchors.centerIn: parent
+        fillMode: Image.PreserveAspectFit // ensure it fits
+        mipmap: true // smoothing
+    }
 }

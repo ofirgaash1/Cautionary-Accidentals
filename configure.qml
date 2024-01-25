@@ -36,10 +36,6 @@ MuseScore {
     description: qsTr("Choose when to add cautionary accidentals to your scores, and how they look.")
     requiresScore: false
 
-    readonly property int maxSpace: 15
-    readonly property int regSpace: 10
-    readonly property int minSpace: 5
-
     //TODO:
     //move more stuff to separate components (grace note checkboxes)
     //fix keysig setting checkboxes

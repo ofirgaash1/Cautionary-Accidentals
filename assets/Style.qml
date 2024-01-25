@@ -18,10 +18,13 @@
 //==============================================
 
 import QtQuick 2.9
-import QtQuick.Controls 2.2
 import MuseScore.Ui 1.0
 
-Frame {
-    background: Rectangle {color: "transparent"; border.color: ui.theme.strokeColor}
-	padding: regSpace
+QtObject {
+	property var accentColor:			ui.theme.accentColor
+	property var backgroundColor1:		ui.theme.backgroundPrimaryColor
+	property var backgroundColor2:		ui.theme.backgroundSecondaryColor
+    readonly property int maxSpace:		15
+    readonly property int regSpace:		10
+    readonly property int minSpace:		5
 }

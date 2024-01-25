@@ -22,24 +22,24 @@ import MuseScore.UiComponents 1.0 as MU
 import MuseScore.Ui 1.0
 
 Item {
-	height: toggle.height + 2 * 10
-	width: parent.width //fix
-	
-	property string title
-	property bool isExpanded: false
-	
-	MU.ExpandableBlankSection {
-		id: toggle
-		title: parent.title
-		isExpanded: parent.isExpanded
-		anchors {
-			verticalCenter: parent.verticalCenter
-			left: parent.left
-			leftMargin: 10
-		}
-	}
-	MouseArea {
-		anchors.fill: parent
-		onClicked: parent.isExpanded = !parent.isExpanded
-	}
+    height: toggle.height + 2 * regSpace
+    width: parent.width //fix
+
+    property string title
+    property bool isExpanded: false
+
+    MU.ExpandableBlankSection {
+        id: toggle
+        title: parent.title
+        isExpanded: parent.isExpanded
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+            leftMargin: regSpace
+        }
+    }
+    MouseArea {
+        anchors.fill: parent
+        onClicked: parent.isExpanded = !parent.isExpanded
+    }
 }

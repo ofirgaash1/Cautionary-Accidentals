@@ -23,36 +23,36 @@ import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
 
 Row {
-	id: layout
-	spacing: 6
-	signal activated(int index, var value)
-	property var currentValue: control.currentValue
-	opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
-	signal setv(int index)
-	
-	MU.StyledTextLabel {
-		id: label
-		text: qsTr("Brackets:")
-		anchors.verticalCenter: control.verticalCenter
-	}
+    id: layout
+    spacing: 6
+    signal activated(int index, var value)
+    property var currentValue: control.currentValue
+    opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
+    signal setv(int index)
 
-	MU.StyledDropdown {
-		id: control
-		textRole: "text"
-		valueRole: "fact"
-		currentIndex: 0
-		model: [
-			{text: qsTr("None"),        fact: 0},
-			{text: qsTr("Parentheses"), fact: 1},
-			{text: qsTr("Brackets"),    fact: 2}
-		]
-		onActivated: function(index, value) {
-			currentIndex = index
-			layout.activated(index, value)
-		}
-	}
-	onSetv: function(index) {
-		control.currentIndex = index
-		control.activated(index, Utils.getItemValue(control.model, index, control.valueRole, ""))
-	}
+    MU.StyledTextLabel {
+        id: label
+        text: qsTr("Brackets:")
+        anchors.verticalCenter: control.verticalCenter
+    }
+
+    MU.StyledDropdown {
+        id: control
+        textRole: "text"
+        valueRole: "fact"
+        currentIndex: 0
+        model: [
+            {text: qsTr("None"),        fact: 0},
+            {text: qsTr("Parentheses"), fact: 1},
+            {text: qsTr("Brackets"),    fact: 2}
+        ]
+        onActivated: function(index, value) {
+            currentIndex = index
+            layout.activated(index, value)
+        }
+    }
+    onSetv: function(index) {
+        control.currentIndex = index
+        control.activated(index, Utils.getItemValue(control.model, index, control.valueRole, ""))
+    }
 }
