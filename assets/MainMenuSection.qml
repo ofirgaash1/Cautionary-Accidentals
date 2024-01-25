@@ -18,35 +18,28 @@
 //==============================================
 
 import QtQuick 2.9
-import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
+import MuseScore.Ui 1.0
 
 Column {
-    id: layout
-    property int value: radioButton1.checked ? 1 : 2
-    spacing: style.regSpace
-    opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
+    id: root
+    property alias title: menuButton.title
+    property alias isExpanded: menuButton.isExpanded
+    default property alias content: column.children
+
     width: parent.width
+    spacing: 0
 
-    signal clicked
-    signal setv(int value)
-
-    MU.RoundedRadioButton {
-        id: radioButton1
-        implicitWidth: parent.width
-        text: qsTr("Stop after note is cancelled in original octave")
-        onClicked: layout.clicked()
-        checked: true
+    MenuButton {
+        id: menuButton
     }
-    MU.RoundedRadioButton {
-        id: radioButton2
-        implicitWidth: parent.width
-        text: qsTr("Always cancel in all octaves")
-        onClicked: layout.clicked()
-    }
-    onSetv: function (nvalue) {
-        radioButton1.checked = nvalue == 1
-        radioButton2.checked = nvalue == 2
-        clicked()
+    Column {
+        id: column
+        spacing: 0
+        padding: style.regSpace
+        topPadding: 0
+        bottomPadding: 0
+        width: parent.width
+        visible: root.isExpanded
     }
 }

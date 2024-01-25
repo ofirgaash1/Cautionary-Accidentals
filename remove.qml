@@ -19,7 +19,7 @@
 
 import QtQuick 2.0
 import MuseScore 3.0
-import "assets/utils.js" as Utils
+import "assets/accidentals.js" as Accidentals
 
 MuseScore {
     title: qsTr("Remove Cautionary Accidentals")
@@ -29,5 +29,5 @@ MuseScore {
     thumbnailName: "assets/logo.png"
     requiresScore: true
 
-    onRun: Utils.runPlugin("remove")
+    onRun: Accidentals.runPlugin("remove")
 }

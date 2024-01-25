@@ -17,17 +17,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //==============================================
 
-import QtQuick 2.9
-import QtQuick.Layouts 1.2
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
 
-ColumnLayout {
+GroupBox {
 	id: root
-	property int regSpace: 10
-	property int minSpace: 5
-	spacing: regSpace
-	Layout.topMargin: minSpace
+	spacing: style.regSpace
+	anchors.topMargin: style.minSpace
 	opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
 	
 	property int value: radioButton0.checked ? 0 : (radioButton1.checked ? 1 : 2)
@@ -35,12 +33,12 @@ ColumnLayout {
 	signal clicked
 	signal setv(int nvalue)
 	
-	StyledLabel {text: qsTr("Add cautionary accidentals to:")}
+	label: StyledLabel {text: qsTr("Add cautionary accidentals to:")}
 	
-	ColumnLayout {
-		spacing: regSpace
-		Layout.leftMargin: regSpace
-		width: parent.width - Layout.leftMargin
+	Column {
+		spacing: style.regSpace
+		//leftPadding: style.regSpace
+		width: parent.width
 		
 		MU.RoundedRadioButton {
 			id: radioButton0

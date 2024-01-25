@@ -22,24 +22,23 @@ import MuseScore.UiComponents 1.0 as MU
 import MuseScore.Ui 1.0
 
 Item {
-    height: toggle.height + 2 * regSpace
+    height: toggle.height + 2 * style.regSpace
     width: parent.width //fix
 
-    property string title
-    property bool isExpanded: false
+    property alias title: toggle.title
+    property alias isExpanded: toggle.isExpanded
 
     MU.ExpandableBlankSection {
         id: toggle
-        title: parent.title
-        isExpanded: parent.isExpanded
+		isExpanded: false
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
-            leftMargin: regSpace
+            leftMargin: style.regSpace
         }
     }
     MouseArea {
         anchors.fill: parent
-        onClicked: parent.isExpanded = !parent.isExpanded
+        onClicked: toggle.isExpanded = !toggle.isExpanded
     }
 }

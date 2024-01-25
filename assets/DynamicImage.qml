@@ -23,13 +23,14 @@ import MuseScore.Ui 1.0
 
 Rectangle {
     property int realWidth: 400
-    property int cornerRadius: regSpace
+    property int cornerRadius: style.regSpace
     property var source: "logo.png" // something
     radius: cornerRadius
     border.color: ui.theme.accentColor
     border.width: 2
-    Layout.preferredWidth: realWidth
-    Layout.preferredHeight: image.height + cornerRadius
+    //Layout.preferredWidth: realWidth
+	width: parent.width
+    height: image.height + cornerRadius
     //anchors.horizontalCenter: parent.horizontalCenter
     Image {
         id: image

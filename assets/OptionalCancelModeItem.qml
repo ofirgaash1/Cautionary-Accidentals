@@ -17,36 +17,40 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //==============================================
 
-import QtQuick 2.9
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
 
-Column {
-    id: layout
-    property int value: radioButton1.checked ? 1 : 2
-    spacing: style.regSpace
-    opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
-    width: parent.width
-
-    signal clicked
-    signal setv(int value)
-
-    MU.RoundedRadioButton {
-        id: radioButton1
-        implicitWidth: parent.width
-        text: qsTr("Stop after note is cancelled in original octave")
-        onClicked: layout.clicked()
-        checked: true
-    }
-    MU.RoundedRadioButton {
-        id: radioButton2
-        implicitWidth: parent.width
-        text: qsTr("Always cancel in all octaves")
-        onClicked: layout.clicked()
-    }
-    onSetv: function (nvalue) {
-        radioButton1.checked = nvalue == 1
-        radioButton2.checked = nvalue == 2
-        clicked()
+GroupBox {
+	id: root
+	opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
+	
+	property alias checked: checkBox.checked   // both values are currently needed separately, but may be combinable in future
+	property alias value: cancelModeItem.value
+	
+	signal clicked
+	signal setv(bool checked, int value)
+	
+	label: MU.CheckBox {
+		id: checkBox
+		enabled: root.enabled
+		opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
+		text: qsTr("Add cautionary accidentals to notes in any octave")
+		checked: false
+		onClicked: {checked = !checked; root.clicked()}
+		signal setv(bool checked)
+		onSetv: function(value) {checked = value}
+	}
+	
+	CancelModeItem {
+		id: cancelModeItem
+		enabled: root.enabled && checkBox.checked
+        onClicked: root.clicked()
+	}
+	
+    onSetv: function(checked, value) {
+        checkBox.setv(checked)
+        cancelModeItem.setv(value)
     }
 }

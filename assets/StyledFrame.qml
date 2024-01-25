@@ -23,5 +23,6 @@ import MuseScore.Ui 1.0
 
 Frame {
     background: Rectangle {color: "transparent"; border.color: ui.theme.strokeColor}
-	padding: regSpace
+    padding: style.regSpace
+    width: parent.width
 }

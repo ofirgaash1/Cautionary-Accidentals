@@ -28,13 +28,10 @@ Item {
     height: bracketBox.height //childrenRect.height
     //requires indicated width
 
-    property bool checked: checkBox.checked
-    property var currentValue: bracketBox.currentValue
-    property alias checkBox: checkBox
-    property alias bracketBox: checkBox
+    property alias checked: checkBox.checked
+    property alias currentValue: bracketBox.currentValue
 
     signal clicked
-    signal activated(int index, var value)
     signal setv(bool checked, int value)
 
     MU.CheckBox {
@@ -51,7 +48,7 @@ Item {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         enabled: checkBox.checked
-        onActivated: root.activated(index, value)
+        onActivated: root.clicked()
     }
     onSetv: function(checked, value) {
         checkBox.setv(checked)

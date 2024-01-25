@@ -18,35 +18,44 @@
 //==============================================
 
 import QtQuick 2.9
-import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
+import MuseScore.Ui 1.0
 
 Column {
-    id: layout
-    property int value: radioButton1.checked ? 1 : 2
-    spacing: style.regSpace
-    opacity: enabled ? 1.0 : ui.theme.itemOpacityDisabled
-    width: parent.width
+	id: root
+	property alias title: menuButton.title
+	property alias isExpanded: menuButton.isExpanded
+	default property alias content: column.children
+	
+	property alias source: dynamicImage.source
+	
+	width: parent.width
+	spacing: 0
+	anchors.margins: 0
+	
+	MenuButton {
+		id: menuButton
+	}
+	StyledFrame {
+		visible: root.isExpanded
+		width: parent.width - 2 * root.parent.padding
+		padding: style.regSpace
+		bottomPadding: 0
 
-    signal clicked
-    signal setv(int value)
-
-    MU.RoundedRadioButton {
-        id: radioButton1
-        implicitWidth: parent.width
-        text: qsTr("Stop after note is cancelled in original octave")
-        onClicked: layout.clicked()
-        checked: true
-    }
-    MU.RoundedRadioButton {
-        id: radioButton2
-        implicitWidth: parent.width
-        text: qsTr("Always cancel in all octaves")
-        onClicked: layout.clicked()
-    }
-    onSetv: function (nvalue) {
-        radioButton1.checked = nvalue == 1
-        radioButton2.checked = nvalue == 2
-        clicked()
-    }
+		Column {
+			spacing: 0
+			width: parent.width
+			//height: childrenRect.height
+			
+			DynamicImage {id: dynamicImage}
+			
+			Column {
+				id: column
+				spacing: style.regSpace
+				width: parent.width
+				//height: childrenRect.height
+				padding: style.regSpace
+			}
+		}
+	}
 }

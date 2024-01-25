@@ -68,6 +68,12 @@ function addCourtesyAccidentals() {
         }
     }
 
+    // Exception: Only 1 note is selected
+    if (notes.length == 1) {
+        restateAccidental(notes[0], false, 0)
+        return
+    }
+
     notes.sort(function (a,b) {
         //sort notes by tick, prioritise notes with accidentals, prioritise non-doubles to avoid excessive brackets
         if (isSameTick(a,b)) {
@@ -108,7 +114,7 @@ function addCourtesyAccidentals() {
 function addAccidentals(noteList) {
     var testNote = noteList.shift()
     var testName = tpcToNote(testNote.tpc)
-    console.log("Note with accidental found (" + Utils.tpcToName(testNote.tpc) + ").\r\n"
+    console.log("Note with accidental found (" + tpcToName(testNote.tpc) + ").\r\n"
         + "Attempting to add cautionary accidentals to " + noteList.length + " note(s).")
     var cancelledNotes = []
     for (var j in noteList) {
@@ -207,7 +213,7 @@ function addAccidentals(noteList) {
                         if (isSameOctave(note, testNote) && (setting4.parseGraceNotes || !isGraceNote(testNote))) {
                             changeNote = true
                             changeBracket.push(setting4.bracketType)
-                        } else if (setting4.addAccidentals && (setting4.b.parseGraceNotes || !isGraceNote(testNote))) {
+                        } else if (setting4.b.addAccidentals && (setting4.b.parseGraceNotes || !isGraceNote(testNote))) {
                             changeNote = true
                             changeBracket.push(setting4.bracketType)
                         }
@@ -479,7 +485,7 @@ function restateAccidental(note, cancelDouble, bracketType) {
         note.accidentalType = accidental
         note.accidental.visible = note.visible
         note.accidental.accidentalBracket = bracketType
-        console.log("Added a cautionary accidental to note " + Utils.tpcToName(note.tpc))
+        console.log("Added a cautionary accidental to note " + tpcToName(note.tpc))
         //0 = none, 1 = parentheses, 2 = brackets
     }
 }

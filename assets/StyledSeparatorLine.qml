@@ -19,13 +19,11 @@
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.2
-import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0 as MU
 
 MU.SeparatorLine {
-	property int margin: 10
-	Layout.leftMargin: 0
-	Layout.rightMargin: 0
-	Layout.topMargin: margin
-	Layout.bottomMargin: margin
+    anchors.leftMargin: 0
+    anchors.rightMargin: 0
+    anchors.topMargin: style.regSpace
+    anchors.bottomMargin: style.regSpace
 }

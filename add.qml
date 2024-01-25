@@ -21,7 +21,7 @@ import QtQuick 2.0
 import MuseScore 3.0
 import Qt.labs.settings 1.0
 import "assets/defaultsettings.js" as DSettings
-import "assets/utils.js" as Utils
+import "assets/accidentals.js" as Accidentals
 
 MuseScore {
     title: qsTr("Add Cautionary Accidentals")
@@ -138,7 +138,7 @@ MuseScore {
     //   cancelling has to happen in original staff
     //option false: continue to add accidentals as needed if not previously cancelled in same octave
 
-    onRun: Utils.runPlugin("add")
+    onRun: Accidentals.runPlugin("add")
 
     Settings {
         id: options
