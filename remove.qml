@@ -1,7 +1,6 @@
 //==============================================
-//  Cautionary Accidentals v4.0
-//  https://github.com/XiaoMigros/Cautionary-Accidentals
-//  Copyright (C)2023 XiaoMigros
+//  Score Simplifier
+//  Reworked from Cautionary Accidentals template
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -22,12 +21,12 @@ import MuseScore 3.0
 import "assets/accidentals.js" as Accidentals
 
 MuseScore {
-    title: qsTr("Remove Cautionary Accidentals")
+    title: qsTr("Simplify Durations Only")
     version: "4.0"
-    description: qsTr("This plugin removes cautionary accidentals from the score")
+    description: qsTr("Regroup selected rhythms into cleaner note values.")
     categoryCode: "composing-arranging-tools"
     thumbnailName: "assets/logo.png"
     requiresScore: true
 
-    onRun: Accidentals.runPlugin("remove")
+    onRun: Accidentals.runPlugin("durations")
 }
